@@ -1,15 +1,15 @@
 //
-//  DataFetcherTests.swift
-//  DataFetcherTests
+//  DataFetcherRepositoryTests.swift
+//  DataFetcherRepositoryTests
 //
 //  Created by Usha Sai Chintha on 11/04/23.
 //
 
 import XCTest
 
-final class DataFetcherTests: XCTestCase {
+final class DataFetcherRepositoryTests: XCTestCase {
 
-    var sut: DataFetcher!
+    var sut: PostsDataFetchRepository!
     var mockSession: MockURLSessionProtocol!
     
     override func tearDown() {
@@ -20,27 +20,27 @@ final class DataFetcherTests: XCTestCase {
     
     func testNilDataWhenInvalidURL() {
         mockSession = createMockSession(fromJsonFile: "A", andError: nil)
-        sut = DataFetcher(url: URL(string: "https://invalidurl")!, session: mockSession)
+        sut = PostsDataFetchRepository(endPoint: "invalidURL", session: mockSession)
         
-        sut.fetchData(with: { data in
+        sut.fetchPostsData(with: { data in
             XCTAssertNil(data)
         })
     }
     
     func testNilDataWhenInvalidDataBeingReturnedByAPI() {
         mockSession = createMockSession(fromJsonFile: "A", andError: nil)
-        sut = DataFetcher(url: URL(string: baseUrl + postsEndPoint)!, session: mockSession)
+        sut = PostsDataFetchRepository(endPoint: postsEndPoint, session: mockSession)
         
-        sut.fetchData(with: { data in
+        sut.fetchPostsData(with: { data in
             XCTAssertNil(data)
         })
     }
     
     func testSuccessDataWhenValidDataBeingReturnedByAPI() {
         mockSession = createMockSession(fromJsonFile: "Post", andError: nil)
-        sut = DataFetcher(url: URL(string: baseUrl + postsEndPoint)!, session: mockSession)
+        sut = PostsDataFetchRepository(endPoint: postsEndPoint, session: mockSession)
         
-        sut.fetchData(with: { data in
+        sut.fetchPostsData(with: { data in
             XCTAssertNotNil(data)
             let postContent = data?.first
             XCTAssertEqual(postContent?.id, Post.with().id)

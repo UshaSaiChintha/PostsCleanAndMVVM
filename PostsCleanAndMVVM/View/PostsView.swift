@@ -29,7 +29,7 @@ struct PostsView: View {
             .listStyle(PlainListStyle())
             .navigationTitle(pageTitle)
             .onAppear {
-                model.getData()
+                model.getPostsData()
             }
         }
     }

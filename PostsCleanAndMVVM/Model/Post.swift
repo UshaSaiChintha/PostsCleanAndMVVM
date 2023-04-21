@@ -13,8 +13,3 @@ struct Post: Codable, Identifiable {
     let title: String
     let body: String
 }
-
-// DTO
-// Entity and Model diff
-// Usecase -> data source
-//

@@ -6,35 +6,30 @@
 //
 
 import Foundation
+import Network
+import SwiftUI
 
-final class GetPostsUseCase: UseCase {
+class GetPostsUseCase: ObservableObject {
 
-    struct RequestValue {
-        let maxCount: Int
+    @Published var sessionError = false
+    
+    let monitor = NWPathMonitor()
+
+    let service: FetchPostsDataService
+    
+    init(service: FetchPostsDataService = PostsDataFetchRepository(endPoint: postsEndPoint, session: URLSession(configuration: URLSessionConfiguration.ephemeral))) {
+        URLSessionConfiguration.ephemeral.waitsForConnectivity = true
+        self.service = service
     }
-    typealias ResultValue = (Result<[MovieQuery], Error>)
 
-    private let requestValue: RequestValue
-    private let completion: (ResultValue) -> Void
-    private let moviesQueriesRepository: MoviesQueriesRepository
-
-    init(
-        requestValue: RequestValue,
-        completion: @escaping (ResultValue) -> Void,
-        moviesQueriesRepository: MoviesQueriesRepository
-    ) {
-
-        self.requestValue = requestValue
-        self.completion = completion
-        self.moviesQueriesRepository = moviesQueriesRepository
+    func getPostsData(with completion: @escaping ([Post]?) -> Void) {
+        service.fetchPostsData { data in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            completion(data)
+        }
     }
     
-    func start() -> Cancellable? {
-
-        moviesQueriesRepository.fetchRecentsQueries(
-            maxCount: requestValue.maxCount,
-            completion: completion
-        )
-        return nil
-    }
 }

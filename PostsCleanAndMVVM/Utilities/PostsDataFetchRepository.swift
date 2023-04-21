@@ -1,5 +1,5 @@
 //
-//  DataFetcherRepository.swift
+//  PostsDataFetchRepository.swift
 //  PostsCleanAndMVVM
 //
 //  Created by Usha Sai Chintha on 11/04/23.
@@ -7,21 +7,19 @@
 
 import Foundation
 
-//update class, functions and protocol names wrt POSTS (renaming and refactoring)
-class DataFetcherRepository: FetchPostsDataProtocol {
+class PostsDataFetchRepository: FetchPostsDataService {
     
-    let url: URL
+    
+    let endPoint: String
     let session: URLSessionProtocol
     
-    init(url: URL, session: URLSessionProtocol) {
-        self.url = url
+    init(endPoint: String, session: URLSessionProtocol) {
+        self.endPoint = endPoint
         self.session = session
     }
     
-    // container mechanism, service-locator pattern, DI...
-    
-    func fetchData(with completion: @escaping ([Post]?) -> Void) {
-        let task = session.dataTask(with: url) { data, _, error in
+    func fetchPostsData(with completion: @escaping ([Post]?) -> Void) {
+        let task = session.dataTask(with: URL(string: baseUrl + endPoint)!) { data, _, error in
             if error != nil {
                 print("URLSession Error: \(String(describing: error?.localizedDescription))")
                 completion(nil)
@@ -36,5 +34,4 @@ class DataFetcherRepository: FetchPostsDataProtocol {
         }
         task.resume()
     }
-    // repository
 }

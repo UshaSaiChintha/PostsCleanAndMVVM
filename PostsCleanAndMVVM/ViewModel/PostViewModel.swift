@@ -7,6 +7,7 @@
 
 import Foundation
 import Network
+import SwiftUI
 
 class PostViewModel: ObservableObject {
     
@@ -14,12 +15,13 @@ class PostViewModel: ObservableObject {
     @Published var isConnected = true
     @Published var sessionError = false
     
-    let monitor = NWPathMonitor()
-    let queue = DispatchQueue(label: "DataFetcher")
+    var getPostsUseCase = GetPostsUseCase()
     
-    let service: ServiceProtocol
-    init(service: ServiceProtocol = DataFetcher(url: URL(string: baseUrl + postsEndPoint)!)) {
-        self.service = service
+    let monitor = NWPathMonitor()
+    let queue = DispatchQueue(label: "PostsDataFetchRepository")
+    
+    init(getPostsUseCase: GetPostsUseCase = GetPostsUseCase()) {
+        self.getPostsUseCase = getPostsUseCase
         monitor.pathUpdateHandler = { path in
             DispatchQueue.main.async {
                 self.isConnected = path.status == .satisfied
@@ -45,13 +47,14 @@ class PostViewModel: ObservableObject {
         }
     }
     
-    func getData() {
-        service.fetchData { data in
+    func getPostsData() {
+        getPostsUseCase.getPostsData { data in
             guard let data = data else {
                 DispatchQueue.main.async {
                     self.sessionError = true
                 }
                 return
+
             }
             DispatchQueue.main.async {
                 self.posts = data

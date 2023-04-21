@@ -1,5 +1,5 @@
 //
-//  MockFetchPostsDataProtocol.swift
+//  MockFetchPostsDataService.swift
 //  PostsCleanAndMVVMTests
 //
 //  Created by Usha Sai Chintha on 12/04/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MockFetchPostsDataProtocol: FetchPostsDataProtocol {
+class MockFetchPostsDataService: FetchPostsDataService {
     let mockData: [Post]?
     
     init(mockData: [Post]?) {
