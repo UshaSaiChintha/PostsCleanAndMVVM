@@ -144,7 +144,7 @@
 				46177D5A29E554AE00EB27B1 /* View */,
 				46177D5B29E5556700EB27B1 /* ViewModel */,
 				46EAFB2529E7C13400EF22E5 /* UseCase */,
-				46177D6229E55A1400EB27B1 /* Utilities */,
+				46177D6229E55A1400EB27B1 /* Network */,
 				46177D5E29E557AE00EB27B1 /* System */,
 				46177D2C29E52D0E00EB27B1 /* Assets.xcassets */,
 				46177D2E29E52D0E00EB27B1 /* PostsCleanAndMVVM.entitlements */,
@@ -228,13 +228,13 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		46177D6229E55A1400EB27B1 /* Utilities */ = {
+		46177D6229E55A1400EB27B1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				46177D6729E55B4800EB27B1 /* Protocol */,
 				46177D6429E55A4700EB27B1 /* PostsDataFetchRepository.swift */,
 			);
-			path = Utilities;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		46177D6729E55B4800EB27B1 /* Protocol */ = {

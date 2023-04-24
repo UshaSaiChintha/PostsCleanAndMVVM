@@ -7,7 +7,6 @@
 
 import Foundation
 
-// protocols can be named as services or other operation
 protocol FetchPostsDataService {
     func fetchPostsData(with completion: @escaping ([Post]?) -> Void)
 }

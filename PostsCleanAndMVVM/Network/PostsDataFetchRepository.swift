@@ -29,7 +29,7 @@ class PostsDataFetchRepository: FetchPostsDataService {
                         return
                     }
                     let decoder = JSONDecoder()
-                    completion(try? decoder.decode([Post].self, from: data))
+                completion(try? decoder.decode([Post].self, from: data))
                 }
         }
         task.resume()
