@@ -8,9 +8,13 @@
 import XCTest
 
 final class PostsCleanAndMVVMUITests: XCTestCase {
+    
+    let app = XCUIApplication()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        app.launch()
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
@@ -21,13 +25,35 @@ final class PostsCleanAndMVVMUITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
+    
+    func testVerifyPostsNavigationTitle() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
+        
+        let posts = app.staticTexts[pageTitle]
+        
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssert(posts.exists)
+    }
+    
+    func testVerifyDisplayOfPosts() throws {
+        
+        let firstPostTitle = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+        let firstPostBody = "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        
+        XCTAsyncAssert(app.staticTexts[firstPostTitle])
+        XCTAsyncAssert(app.staticTexts.matching(multilineLabel: firstPostBody).element)
+    }
+    
+    func testNavigateToPostsDetailsScreenAndVerifyText() throws {
+        
+        let firstPostTitle = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+        
+        app.staticTexts[firstPostTitle].waitForExistence(timeout: 10)
+        app.staticTexts[firstPostTitle].tap()
+        
+        XCTAsyncAssert(app.buttons[pageTitle])
+        XCTAsyncAssert(app.staticTexts[selectedTitleText])
+        XCTAsyncAssert(app.staticTexts[firstPostTitle])
     }
 
     func testLaunchPerformance() throws {

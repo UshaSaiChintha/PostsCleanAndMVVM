@@ -13,7 +13,7 @@ struct PostsDetailScreen: View {
     
     var body: some View {
         VStack {
-        Text("Selected Title")
+        Text(selectedTitleText)
             .font(.largeTitle)
             .fontWeight(.bold)
             .multilineTextAlignment(.center)

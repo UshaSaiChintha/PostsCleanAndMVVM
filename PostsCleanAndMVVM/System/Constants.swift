@@ -11,3 +11,4 @@ let baseUrl = "https://jsonplaceholder.typicode.com/"
 let postsEndPoint = "posts"
 
 let pageTitle = "Posts 📋"
+let selectedTitleText = "Selected Title"
