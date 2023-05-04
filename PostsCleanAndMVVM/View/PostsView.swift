@@ -23,13 +23,19 @@ struct PostsView: View {
                 .font(.headline)
                 .padding(.horizontal, 10)
         } else {
-            List(model.posts) { post in
-                PostRowView(postName: post.title)
-            }
-            .listStyle(PlainListStyle())
-            .navigationTitle(pageTitle)
-            .onAppear {
-                model.getPostsData()
+            NavigationStack {
+                List(model.posts) { post in
+                    NavigationLink {
+                        PostsDetailScreen(postName: post.title)
+                    } label: {
+                        PostRowView(postName: post.title, postBody: post.body)
+                    }
+                }
+                .listStyle(PlainListStyle())
+                .navigationTitle(pageTitle)
+                .onAppear {
+                    model.getPostsData()
+                }
             }
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46054D5B2A036EC20006644D /* PostsDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46054D5A2A036EC20006644D /* PostsDetailScreen.swift */; };
 		46177D2929E52D0B00EB27B1 /* PostsCleanAndMVVMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46177D2829E52D0B00EB27B1 /* PostsCleanAndMVVMApp.swift */; };
 		46177D2B29E52D0B00EB27B1 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46177D2A29E52D0B00EB27B1 /* PostsView.swift */; };
 		46177D2D29E52D0E00EB27B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46177D2C29E52D0E00EB27B1 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46054D5A2A036EC20006644D /* PostsDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailScreen.swift; sourceTree = "<group>"; };
 		46177D2529E52D0B00EB27B1 /* PostsCleanAndMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostsCleanAndMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46177D2829E52D0B00EB27B1 /* PostsCleanAndMVVMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCleanAndMVVMApp.swift; sourceTree = "<group>"; };
 		46177D2A29E52D0B00EB27B1 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				46177D5329E5326500EB27B1 /* PostRowView.swift */,
 				46177D2A29E52D0B00EB27B1 /* PostsView.swift */,
+				46054D5A2A036EC20006644D /* PostsDetailScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			files = (
 				46177D6D29E55BBF00EB27B1 /* URLSessionProtocol.swift in Sources */,
 				46177D5D29E5557D00EB27B1 /* PostViewModel.swift in Sources */,
+				46054D5B2A036EC20006644D /* PostsDetailScreen.swift in Sources */,
 				46177D5429E5326500EB27B1 /* PostRowView.swift in Sources */,
 				46177D6B29E55B6700EB27B1 /* URLSessionDataTaskProtocol.swift in Sources */,
 				46177D2B29E52D0B00EB27B1 /* PostsView.swift in Sources */,

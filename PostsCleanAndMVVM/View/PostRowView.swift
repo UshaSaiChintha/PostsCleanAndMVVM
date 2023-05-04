@@ -10,10 +10,19 @@ import SwiftUI
 struct PostRowView: View {
     
     let postName: String
+    let postBody: String
     
     var body: some View {
         HStack{
-            Text(postName)
+            VStack{
+                Text(postName)
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+                Text(postBody)
+                    .fontWeight(.ultraLight)
+                    .font(.body)
+                    .multilineTextAlignment(.leading)
+            }
             Spacer()
         }
     }
@@ -21,6 +30,6 @@ struct PostRowView: View {
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRowView(postName: "First Post")
+        PostRowView(postName: "First Post", postBody: "First Body")
     }
 }
